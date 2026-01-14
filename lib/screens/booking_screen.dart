@@ -1,396 +1,8 @@
-
-
-
-// import 'package:flutter/material.dart';
-
-// /// SECTION ENUM
-// enum BookingSection { services, gallery, reviews, about }
-
-// class BookingScreen extends StatefulWidget {
-//   const BookingScreen({super.key});
-
-//   @override
-//   State<BookingScreen> createState() => _BookingScreenState();
-// }
-
-// class _BookingScreenState extends State<BookingScreen> {
-//   BookingSection _currentSection = BookingSection.services;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.white,
-
-//       appBar: AppBar(
-//         leading: IconButton(
-//           icon: const Icon(Icons.arrow_back, color: Colors.black),
-//           onPressed: () => Navigator.pop(context),
-//         ),
-//         backgroundColor: Colors.white,
-//         elevation: 0,
-//       ),
-
-//       body: SingleChildScrollView(
-//         padding: const EdgeInsets.all(16),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             /// SALON IMAGE
-//             ClipRRect(
-//               borderRadius: BorderRadius.circular(16),
-//               child: Image.asset(
-//                 "assets/images/salonImage.jpg",
-//                 height: 180,
-//                 width: double.infinity,
-//                 fit: BoxFit.cover,
-//               ),
-//             ),
-
-//             const SizedBox(height: 16),
-
-//             /// SALON INFO
-//             const Text(
-//               "Enclave, Haven",
-//               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//             ),
-//             const SizedBox(height: 4),
-//             const Text(
-//               "Haircuts, Makeup, Manicure, Hydra facial",
-//               style: TextStyle(color: Colors.grey),
-//             ),
-
-//             const SizedBox(height: 12),
-
-//             /// ADDRESS + STATUS
-//             Row(
-//               children: [
-//                 const Icon(Icons.location_on, size: 16, color: Colors.red),
-//                 const SizedBox(width: 4),
-//                 const Expanded(
-//                   child: Text(
-//                     "0539 NYC, Street #98, Maine#04, Inglewood",
-//                     style: TextStyle(fontSize: 12),
-//                   ),
-//                 ),
-//                 Container(
-//                   padding:
-//                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-//                   decoration: BoxDecoration(
-//                     color: Colors.green,
-//                     borderRadius: BorderRadius.circular(20),
-//                   ),
-//                   child: const Text(
-//                     "Open",
-//                     style: TextStyle(color: Colors.white, fontSize: 12),
-//                   ),
-//                 )
-//               ],
-//             ),
-
-//             const SizedBox(height: 16),
-
-//             /// TABS
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceAround,
-//               children: [
-//                 _tabItem("Services", BookingSection.services),
-//                 _tabItem("Gallery", BookingSection.gallery),
-//                 _tabItem("Reviews", BookingSection.reviews),
-//                 _tabItem("About us", BookingSection.about),
-//               ],
-//             ),
-
-//             const Divider(height: 30),
-
-//             /// CONTENT
-//             _buildSectionContent(),
-
-//             const SizedBox(height: 90),
-//           ],
-//         ),
-//       ),
-
-//       /// BOOK BUTTON
-//       bottomNavigationBar: Padding(
-//         padding: const EdgeInsets.all(16),
-//         child: ElevatedButton(
-//           style: ElevatedButton.styleFrom(
-//             backgroundColor: const Color(0xFF5B2C6F),
-//             minimumSize: const Size(double.infinity, 50),
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-//           ),
-//           onPressed: () {},
-//           child: const Text("Book Appointment"),
-//         ),
-//       ),
-//     );
-//   }
-
-//   /// TAB ITEM
-//   Widget _tabItem(String title, BookingSection section) {
-//     final bool isActive = _currentSection == section;
-
-//     return GestureDetector(
-//       onTap: () {
-//         setState(() {
-//           _currentSection = section;
-//         });
-//       },
-//       child: Column(
-//         children: [
-//           Text(
-//             title,
-//             style: TextStyle(
-//               color: isActive ? const Color(0xFF5B2C6F) : Colors.grey,
-//               fontWeight: FontWeight.w600,
-//             ),
-//           ),
-//           const SizedBox(height: 6),
-//           if (isActive)
-//             Container(
-//               width: 30,
-//               height: 3,
-//               decoration: BoxDecoration(
-//                 color: Colors.teal,
-//                 borderRadius: BorderRadius.circular(2),
-//               ),
-//             ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   /// SWITCH CONTENT
-//   Widget _buildSectionContent() {
-//     switch (_currentSection) {
-//       case BookingSection.gallery:
-//         return _gallerySection();
-//       case BookingSection.reviews:
-//         return _reviewsSection();
-//       case BookingSection.about:
-//         return _aboutSection();
-//       case BookingSection.services:
-//       default:
-//         return _servicesSection();
-//     }
-//   }
-
-//   /// SERVICES SECTION (WORKING DROPDOWNS)
-//   Widget _servicesSection() {
-//     return const Column(
-//       children: [
-//         ServiceDropdown(
-//           title: "Hair Services",
-//           services: [
-//             "Hair Cut",
-//             "Hair Coloring",
-//             "Hair Highlights",
-//             "Keratin Treatment",
-//             "Hair Spa",
-//             "Hair Styling",
-//           ],
-//         ),
-//         ServiceDropdown(
-//           title: "Nail Services",
-//           services: [
-//             "Gel Nails",
-//             "Acrylic Nails",
-//             "Nail Extensions",
-//             "Nail Art",
-//             "Nail Repair",
-//           ],
-//         ),
-//         ServiceDropdown(
-//           title: "Manicure Services",
-//           services: [
-//             "Classic Manicure",
-//             "French Manicure",
-//             "Spa Manicure",
-//             "Paraffin Manicure",
-//           ],
-//         ),
-//         ServiceDropdown(
-//           title: "Hydra Facial",
-//           services: [
-//             "Basic Hydra Facial",
-//             "Deep Cleansing Facial",
-//             "Anti-Aging Facial",
-//             "Skin Brightening Facial",
-//           ],
-//         ),
-//       ],
-//     );
-//   }
-
-//   /// GALLERY
-//   Widget _gallerySection() {
-//     return GridView.builder(
-//       shrinkWrap: true,
-//       physics: const NeverScrollableScrollPhysics(),
-//       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-//         crossAxisCount: 2,
-//         crossAxisSpacing: 12,
-//         mainAxisSpacing: 12,
-//       ),
-//       itemCount: 4,
-//       itemBuilder: (context, index) {
-//         return ClipRRect(
-//           borderRadius: BorderRadius.circular(12),
-//           child: Image.asset(
-//             "assets/images/salonImage.jpg",
-//             fit: BoxFit.cover,
-//           ),
-//         );
-//       },
-//     );
-//   }
-
-//   /// REVIEWS
-//   Widget _reviewsSection() {
-//     return Column(
-//       children: [
-//         _reviewCard("Jessica Wilson"),
-//         _reviewCard("Jane Austen"),
-//       ],
-//     );
-//   }
-
-//   Widget _reviewCard(String name) {
-//     return Card(
-//       margin: const EdgeInsets.only(bottom: 12),
-//       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-//       child: Padding(
-//         padding: const EdgeInsets.all(12),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text(name,
-//                 style: const TextStyle(fontWeight: FontWeight.bold)),
-//             const SizedBox(height: 6),
-//             const Text(
-//                 "Exceptional service with friendly staff and clean environment."),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   /// ABOUT US
-//   Widget _aboutSection() {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: const [
-//         Text("About Us", style: TextStyle(fontWeight: FontWeight.bold)),
-//         SizedBox(height: 8),
-//         Text(
-//             "We provide professional salon services with experienced stylists."),
-//         SizedBox(height: 16),
-//         Text("Working Hours",
-//             style: TextStyle(fontWeight: FontWeight.bold)),
-//         SizedBox(height: 8),
-//         Text("Monday - Friday: 9:00 AM - 8:00 PM"),
-//         Text("Saturday - Sunday: 10:00 AM - 6:00 PM"),
-//       ],
-//     );
-//   }
-// }
-
-// /// SERVICE DROPDOWN WIDGET
-// class ServiceDropdown extends StatefulWidget {
-//   final String title;
-//   final List<String> services;
-
-//   const ServiceDropdown({
-//     super.key,
-//     required this.title,
-//     required this.services,
-//   });
-
-//   @override
-//   State<ServiceDropdown> createState() => _ServiceDropdownState();
-// }
-
-// class _ServiceDropdownState extends State<ServiceDropdown> {
-//   bool _expanded = false;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         GestureDetector(
-//           onTap: () {
-//             setState(() {
-//               _expanded = !_expanded;
-//             });
-//           },
-//           child: Container(
-//             margin: const EdgeInsets.only(bottom: 8),
-//             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-//             decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(12),
-//               border: Border.all(color: Colors.purple),
-//             ),
-//             child: Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 Text(
-//                   widget.title,
-//                   style: const TextStyle(fontWeight: FontWeight.w600),
-//                 ),
-//                 Icon(
-//                   _expanded
-//                       ? Icons.keyboard_arrow_up
-//                       : Icons.keyboard_arrow_down,
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-
-//         AnimatedCrossFade(
-//           firstChild: const SizedBox.shrink(),
-//           secondChild: _serviceList(),
-//           crossFadeState: _expanded
-//               ? CrossFadeState.showSecond
-//               : CrossFadeState.showFirst,
-//           duration: const Duration(milliseconds: 200),
-//         ),
-//       ],
-//     );
-//   }
-
-//   Widget _serviceList() {
-//     return Container(
-//       margin: const EdgeInsets.only(bottom: 12),
-//       padding: const EdgeInsets.all(12),
-//       decoration: BoxDecoration(
-//         color: Colors.grey.shade50,
-//         borderRadius: BorderRadius.circular(12),
-//         border: Border.all(color: Colors.purple.shade100),
-//       ),
-//       child: Column(
-//         children: widget.services
-//             .map(
-//               (service) => Padding(
-//                 padding: const EdgeInsets.symmetric(vertical: 6),
-//                 child: Row(
-//                   children: [
-//                     const Icon(Icons.check_circle,
-//                         size: 18, color: Colors.green),
-//                     const SizedBox(width: 8),
-//                     Text(service),
-//                   ],
-//                 ),
-//               ),
-//             )
-//             .toList(),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import './booked_successfully_screen.dart';
+
 
 enum BookingSection { services, gallery, reviews, about }
 
@@ -407,6 +19,11 @@ class _BookingScreenState extends State<BookingScreen> {
   final List<String> selectedServices = [];
   bool showConfirmAppointment = false;
 
+  DateTime selectedDate = DateTime.now();
+  DateTime currentMonth = DateTime.now();
+  String? selectedSlot;
+
+  /// TOGGLE SERVICES
   void toggleService(String service) {
     setState(() {
       selectedServices.contains(service)
@@ -415,32 +32,91 @@ class _BookingScreenState extends State<BookingScreen> {
     });
   }
 
+  /// SAVE APPOINTMENT TO FIREBASE
+  Future<void> saveAppointment() async {
+  final user = FirebaseAuth.instance.currentUser;
+
+  if (user == null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Please login first")),
+    );
+    return;
+  }
+
+  if (selectedSlot == null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Please select a time slot")),
+    );
+    return;
+  }
+
+  if (selectedServices.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Please select at least one service")),
+    );
+    return;
+  }
+
+  try {
+    await FirebaseFirestore.instance.collection('appointments').add({
+      'userId': user.uid,
+      'salonName': 'Enclave, Haven',
+      'services': selectedServices,
+      'date': Timestamp.fromDate(selectedDate),
+      'slot': selectedSlot, // ✅ NO !
+      'status': 'pending',
+      'createdAt': FieldValue.serverTimestamp(),
+    });
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => BookedSuccessfullyScreen(
+          salonName: 'Enclave, Haven',
+          services: selectedServices,
+          date: selectedDate,
+          slot: selectedSlot!, // safe now because we validated above
+        ),
+      ),
+    );
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Error: $e")),
+    );
+  }
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
 
+      /// APP BAR
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            if (showConfirmAppointment) {
-              setState(() => showConfirmAppointment = false);
-            } else {
-              Navigator.pop(context);
-            }
-          },
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
+  leading: IconButton(
+    icon: const Icon(Icons.arrow_back, color: Colors.black),
+    onPressed: () {
+      if (showConfirmAppointment) {
+        // If on confirmation screen, go back to services selection
+        setState(() => showConfirmAppointment = false);
+      } else {
+        // Otherwise, go back to the previous screen
+        Navigator.of(context).maybePop();
+      }
+    },
+  ),
+  backgroundColor: Colors.white,
+  elevation: 0,
+),
 
+
+      /// BODY
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             /// IMAGE
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
@@ -460,23 +136,23 @@ class _BookingScreenState extends State<BookingScreen> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
 
-            const SizedBox(height: 6),
+            const SizedBox(height: 8),
 
             /// SELECTED SERVICES
-            if (selectedServices.isNotEmpty) ...[
+            if (selectedServices.isNotEmpty)
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: selectedServices.map((service) {
+                children: selectedServices.map((s) {
                   return Chip(
-                    label: Text(service),
-                    deleteIcon: const Icon(Icons.close, size: 18),
-                    onDeleted: () => toggleService(service),
+                    label: Text(s),
+                    deleteIcon: const Icon(Icons.close),
+                    onDeleted: () => toggleService(s),
                   );
                 }).toList(),
               ),
-              const SizedBox(height: 12),
-            ],
+
+            const SizedBox(height: 12),
 
             /// ADDRESS
             Row(
@@ -506,7 +182,7 @@ class _BookingScreenState extends State<BookingScreen> {
 
             const SizedBox(height: 16),
 
-            /// TABS (HIDE WHEN CONFIRM)
+            /// TABS
             if (!showConfirmAppointment) ...[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -544,7 +220,7 @@ class _BookingScreenState extends State<BookingScreen> {
             if (!showConfirmAppointment) {
               setState(() => showConfirmAppointment = true);
             } else {
-              // CONFIRM ACTION HERE
+              saveAppointment();
             }
           },
           child: Text(
@@ -557,6 +233,7 @@ class _BookingScreenState extends State<BookingScreen> {
     );
   }
 
+  /// TAB ITEM
   Widget _tabItem(String title, BookingSection section) {
     final isActive = _currentSection == section;
     return GestureDetector(
@@ -579,7 +256,7 @@ class _BookingScreenState extends State<BookingScreen> {
                 color: Colors.teal,
                 borderRadius: BorderRadius.circular(2),
               ),
-            )
+            ),
         ],
       ),
     );
@@ -600,61 +277,38 @@ class _BookingScreenState extends State<BookingScreen> {
   }
 
   /// SERVICES
-  /// SERVICES SECTION
   Widget _servicesSection() {
     return Column(
       children: [
         ServiceDropdown(
           title: "Hair Services",
-          services: [
+          services: const [
             "Hair Cut",
             "Hair Coloring",
             "Hair Highlights",
             "Keratin Treatment",
             "Hair Spa",
-            "Hair Styling",
           ],
           selectedServices: selectedServices,
           onSelect: toggleService,
         ),
         ServiceDropdown(
           title: "Nail Services",
-          services: [
+          services: const [
             "Gel Nails",
             "Acrylic Nails",
             "Nail Extensions",
             "Nail Art",
-            "Nail Repair",
           ],
           selectedServices: selectedServices,
           onSelect: toggleService,
         ),
-        ServiceDropdown(
-          title: "Manicure Services",
-          services: [
-            "Classic Manicure",
-            "French Manicure",
-            "Spa Manicure",
-            "Paraffin Manicure",
-          ],
-          selectedServices: selectedServices,
-          onSelect: toggleService,
-        ),
-        ServiceDropdown(
-          title: "Hydra Facial",
-          services: [
-            "Basic Hydra Facial",
-            "Deep Cleansing Facial",
-            "Anti-Aging Facial",
-            "Skin Brightening Facial",
-          ],
-          selectedServices: selectedServices,
-          onSelect: toggleService,
-        ),
+        ServiceDropdown( title: "Manicure Services", services: [ "Classic Manicure", "French Manicure", "Spa Manicure", "Paraffin Manicure", ], selectedServices: selectedServices, onSelect: toggleService, ), ServiceDropdown( title: "Hydra Facial", services: [ "Basic Hydra Facial", "Deep Cleansing Facial", "Anti-Aging Facial", "Skin Brightening Facial", ], selectedServices: selectedServices, onSelect: toggleService, ),
       ],
     );
   }
-  /// CONFIRM APPOINTMENT (CALENDAR + SLOTS PLACEHOLDER)
+
+  /// CONFIRM APPOINTMENT
   Widget _confirmAppointmentSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -664,25 +318,12 @@ class _BookingScreenState extends State<BookingScreen> {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 16),
-
         const Text("Select Date"),
         const SizedBox(height: 8),
-        Container(
-          height: 250,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.grey.shade300),
-          ),
-          child: const Center(
-            child: Text("Calendar Widget Here"),
-          ),
-        ),
-
+        _buildCustomCalendar(),
         const SizedBox(height: 20),
-
         const Text("Available Slots"),
         const SizedBox(height: 12),
-
         Wrap(
           spacing: 10,
           runSpacing: 10,
@@ -697,18 +338,139 @@ class _BookingScreenState extends State<BookingScreen> {
     );
   }
 
+  /// SLOT
   Widget _slot(String time) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.purple),
+    final isSelected = selectedSlot == time;
+    return GestureDetector(
+      onTap: () => setState(() => selectedSlot = time),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          color: isSelected ? const Color(0xFF5B2C6F) : Colors.transparent,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.purple),
+        ),
+        child: Text(
+          time,
+          style: TextStyle(color: isSelected ? Colors.white : Colors.black),
+        ),
       ),
-      child: Text(time),
     );
   }
-//gallery Section
- Widget _gallerySection() {
+
+  /// CUSTOM CALENDAR
+  Widget _buildCustomCalendar() {
+    final daysInMonth =
+        DateUtils.getDaysInMonth(currentMonth.year, currentMonth.month);
+    final firstDay =
+        DateTime(currentMonth.year, currentMonth.month, 1).weekday;
+
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.chevron_left),
+                onPressed: () {
+                  setState(() {
+                    currentMonth =
+                        DateTime(currentMonth.year, currentMonth.month - 1);
+                  });
+                },
+              ),
+              Text(
+                "${_monthName(currentMonth.month)} ${currentMonth.year}",
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              IconButton(
+                icon: const Icon(Icons.chevron_right),
+                onPressed: () {
+                  setState(() {
+                    currentMonth =
+                        DateTime(currentMonth.year, currentMonth.month + 1);
+                  });
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate:
+                const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 7),
+            itemCount: daysInMonth + firstDay - 1,
+            itemBuilder: (context, index) {
+              if (index < firstDay - 1) return const SizedBox();
+              final day = index - firstDay + 2;
+              final date =
+                  DateTime(currentMonth.year, currentMonth.month, day);
+
+              final isSelected = date.day == selectedDate.day &&
+                  date.month == selectedDate.month &&
+                  date.year == selectedDate.year;
+
+              final isPast =
+                  date.isBefore(DateTime.now().subtract(const Duration(days: 1)));
+
+              return GestureDetector(
+                onTap:
+                    isPast ? null : () => setState(() => selectedDate = date),
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: isSelected
+                        ? const Color(0xFF5B2C6F)
+                        : Colors.transparent,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    "$day",
+                    style: TextStyle(
+                      color: isPast
+                          ? Colors.grey
+                          : isSelected
+                              ? Colors.white
+                              : Colors.black,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _monthName(int month) {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    return months[month - 1];
+  }
+
+  /// GALLERY
+  Widget _gallerySection() {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -721,19 +483,13 @@ class _BookingScreenState extends State<BookingScreen> {
       itemBuilder: (context, index) {
         return ClipRRect(
           borderRadius: BorderRadius.circular(12),
-          child: Image.asset(
-            "assets/images/salonImage.jpg",
-            fit: BoxFit.cover,
-          ),
+          child: Image.asset("assets/images/salonImage.jpg", fit: BoxFit.cover),
         );
       },
     );
   }
 
-
-  //Reviews Section
-
-   /// REVIEWS
+  /// REVIEWS
   Widget _reviewsSection() {
     return Column(
       children: [
@@ -747,37 +503,28 @@ class _BookingScreenState extends State<BookingScreen> {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(name,
-                style: const TextStyle(fontWeight: FontWeight.bold)),
-            const SizedBox(height: 6),
-            const Text(
-                "Exceptional service with friendly staff and clean environment."),
-          ],
+      child: const Padding(
+        padding: EdgeInsets.all(12),
+        child: Text(
+          "Exceptional service with friendly staff.",
         ),
       ),
     );
   }
-  /// ABOUT US section
+
   /// ABOUT
   Widget _aboutSection() {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         Text("About Us", style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(height: 8),
-        Text(
-            "We provide professional salon services with experienced stylists."),
+        Text("We provide professional salon services."),
         SizedBox(height: 16),
-        Text("Working Hours",
-            style: TextStyle(fontWeight: FontWeight.bold)),
+        Text("Working Hours", style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(height: 8),
-        Text("Monday - Friday: 9:00 AM - 8:00 PM"),
-        Text("Saturday - Sunday: 10:00 AM - 6:00 PM"),
+        Text("Mon–Fri: 9:00 AM – 8:00 PM"),
+        Text("Sat–Sun: 10:00 AM – 6:00 PM"),
       ],
     );
   }
@@ -803,14 +550,14 @@ class ServiceDropdown extends StatefulWidget {
 }
 
 class _ServiceDropdownState extends State<ServiceDropdown> {
-  bool _expanded = false;
+  bool expanded = false;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         GestureDetector(
-          onTap: () => setState(() => _expanded = !_expanded),
+          onTap: () => setState(() => expanded = !expanded),
           child: Container(
             padding: const EdgeInsets.all(14),
             margin: const EdgeInsets.only(bottom: 8),
@@ -822,18 +569,17 @@ class _ServiceDropdownState extends State<ServiceDropdown> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(widget.title),
-                Icon(_expanded
+                Icon(expanded
                     ? Icons.keyboard_arrow_up
                     : Icons.keyboard_arrow_down),
               ],
             ),
           ),
         ),
-        if (_expanded)
+        if (expanded)
           Column(
             children: widget.services.map((s) {
-              final isSelected =
-                  widget.selectedServices.contains(s);
+              final isSelected = widget.selectedServices.contains(s);
               return ListTile(
                 onTap: () => widget.onSelect(s),
                 leading: Icon(
@@ -845,7 +591,7 @@ class _ServiceDropdownState extends State<ServiceDropdown> {
                 title: Text(s),
               );
             }).toList(),
-          )
+          ),
       ],
     );
   }
